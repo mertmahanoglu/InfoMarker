@@ -1,7 +1,7 @@
 import { Company } from "./Company";
 import { User } from "./User";
 
-interface LocationInfo{
+export interface LocationInfo{
   Location: {
     lat: number;
     lng: number;
@@ -27,6 +27,13 @@ export class CustomMap{
         lat: entity.Location.lat,
         lng: entity.Location.lng
       }
+    });
+
+    marker.addListener('click', () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: "some content"
+      });
+      infoWindow.open(this.map,marker)
     });
   }
 }

@@ -1,6 +1,7 @@
 import {faker} from '@faker-js/faker';
+import { LocationInfo } from './CustomMap';
 
-export class Company{
+export class Company implements LocationInfo{
   CompanyName: string;
   CatchPhrase: string;
   Location: {

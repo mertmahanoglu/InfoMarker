@@ -1,6 +1,7 @@
 import {faker} from '@faker-js/faker';
+import { LocationInfo } from './CustomMap';
 
-export class User{
+export class User implements LocationInfo{
   Username: string;
   Location: {
     lat: number;
