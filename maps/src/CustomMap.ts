@@ -1,6 +1,13 @@
 import { Company } from "./Company";
 import { User } from "./User";
 
+interface LocationInfo{
+  Location: {
+    lat: number;
+    lng: number;
+  }
+}
+
 export class CustomMap{
   private map: google.maps.Map;
   constructor(){
@@ -13,16 +20,13 @@ export class CustomMap{
     });
   }
 
-  addUserMarker(user : User): void{
+  addMarker(entity : LocationInfo): void{
     const marker = new google.maps.Marker({
       map: this.map,
       position: {
-        lat: user.UserLocation.lat,
-        lng: user.UserLocation.lng
+        lat: entity.Location.lat,
+        lng: entity.Location.lng
       }
     });
-  }
-  addCompanyMarker(company : Company): void{
-    
   }
 }

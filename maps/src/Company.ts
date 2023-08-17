@@ -3,7 +3,7 @@ import {faker} from '@faker-js/faker';
 export class Company{
   CompanyName: string;
   CatchPhrase: string;
-  CompanyLocation: {
+  Location: {
     lat: number;
     lng: number;
   };
@@ -11,7 +11,7 @@ export class Company{
   constructor(){
     this.CompanyName = faker.company.name();
     this.CatchPhrase = faker.company.catchPhrase();
-    this.CompanyLocation = {
+    this.Location = {
       lat: faker.location.latitude(),
       lng: faker.location.longitude()
     };
