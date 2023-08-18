@@ -18,10 +18,8 @@ export class CustomMap {
       document.getElementById('map-div') as HTMLElement,
       {
         zoom: 1,
-        center: {
-          lat: 0,
-          lng: 0,
-        },
+        minZoom: 1,
+        center: new google.maps.LatLng(-34.397, 150.644),
       }
     );
   }
@@ -42,14 +40,6 @@ export class CustomMap {
       }
     );
   }
-
-  openCountryWindow(content: string): void {
-    const infoWindow = new google.maps.InfoWindow({
-      content: content,
-    });
-
-    infoWindow.open(this.googleMap, marker);
-  }
 }
 
 function placeMarker(location, map: google.maps.Map, content: string): void {
@@ -60,7 +50,15 @@ function placeMarker(location, map: google.maps.Map, content: string): void {
 
   marker.addListener('click', () => {
     const infoWindow = new google.maps.InfoWindow({
-      content: content,
+      content:
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        `<h1 id="firstHeading" class="firstHeading">${content}</h1>` +
+        '<div id="bodyContent">' +
+        `<a href='http://google.com/search?q=${content}' target=_blank>Search on google</a> <br/>` +
+        '</div>' +
+        '</div>',
     });
 
     infoWindow.open(map, marker);
