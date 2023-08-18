@@ -28,15 +28,19 @@ export class CustomMap {
 
   addMarker(): void {
     const map = this.googleMap;
-    google.maps.event.addListener(this.googleMap, 'click', function (event) {
-      if (marker !== undefined) hideMarkers(marker);
-      const locationFounder = new LocationFounder();
-      const windowContent = locationFounder.getLocation(
-        event.latLng.lat(),
-        event.latLng.lng()
-      );
-      placeMarker(event.latLng, map, windowContent);
-    });
+    google.maps.event.addListener(
+      this.googleMap,
+      'click',
+      async function (event) {
+        if (marker !== undefined) hideMarkers(marker);
+        const locationFounder = new LocationFounder();
+        const windowContent = locationFounder.getLocation(
+          event.latLng.lat(),
+          event.latLng.lng()
+        );
+        placeMarker(event.latLng, map, await windowContent);
+      }
+    );
   }
 
   openCountryWindow(content: string): void {
