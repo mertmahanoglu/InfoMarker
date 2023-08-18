@@ -1,6 +1,8 @@
 /// <reference types="@types/google.maps" />
 // Instructions to every other class
 // on how they can be an argument to 'addMarker'
+import { LocationFounder } from './LocationFounder';
+
 export interface LocationInfo {
   Location: {
     lat: number;
@@ -28,16 +30,39 @@ export class CustomMap {
     const map = this.googleMap;
     google.maps.event.addListener(this.googleMap, 'click', function (event) {
       if (marker !== undefined) hideMarkers(marker);
-      placeMarker(event.latLng, map);
+      const locationFounder = new LocationFounder();
+      const windowContent = locationFounder.getLocation(
+        event.latLng.lat(),
+        event.latLng.lng()
+      );
+      placeMarker(event.latLng, map, windowContent);
     });
+  }
+
+  openCountryWindow(content: string): void {
+    const infoWindow = new google.maps.InfoWindow({
+      content: content,
+    });
+
+    infoWindow.open(this.googleMap, marker);
   }
 }
 
-function placeMarker(location, map: google.maps.Map): void {
+function placeMarker(location, map: google.maps.Map, content: string): void {
   marker = new google.maps.Marker({
     position: location,
     map: map,
   });
+
+  marker.addListener('click', () => {
+    const infoWindow = new google.maps.InfoWindow({
+      content: content,
+    });
+
+    infoWindow.open(map, marker);
+  });
+
+  new google.maps.event.trigger(marker, 'click');
 }
 
 // Removes the markers from the map, but keeps them in the array.

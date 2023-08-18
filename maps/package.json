@@ -1,10 +1,16 @@
 {
   "devDependencies": {
+    "@types/node-fetch": "^2.6.4",
     "typescript": "^5.1.6"
   },
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
     "@types/google.maps": "^3.53.6",
-    "@types/googlemaps": "^3.43.3"
+    "@types/googlemaps": "^3.43.3",
+    "@types/xml2js": "^0.4.11",
+    "@types/xml2json": "^0.11.4",
+    "axios": "^1.4.0",
+    "node-fetch": "^2.6.7",
+    "xml2js": "^0.6.2"
   }
 }

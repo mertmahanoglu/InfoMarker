@@ -1,8 +1,7 @@
-/// <reference types="@types/google.maps" />
+/// <reference types="@types/googlemaps" />
 
-import { User } from './User';
-import { Company } from './Company';
 import { CustomMap } from './CustomMap';
+import { LocationFounder } from './LocationFounder';
 
 const customMap = new CustomMap();
 customMap.addMarker();
